@@ -1,10 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.8-slim
-
-# Set environment variables for Flask
-ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
-ENV FLASK_RUN_PORT=5000
+FROM python:3.9-slim
 
 # Create and set the working directory in the container
 WORKDIR /app
@@ -22,4 +17,4 @@ COPY . /app
 EXPOSE 5000
 
 # Define the command to run your Flask application
-CMD ["flask", "run"]
+CMD ["python", "backend.py"]
