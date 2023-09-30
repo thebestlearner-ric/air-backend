@@ -19,5 +19,5 @@ docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 docker build -t $IMAGE .
 docker push $IMAGE
 docker images
-export $ENV
-export $IMAGE
+echo "$ENV" >> artifact.txt
+echo "$IMAGE" >> artifact.txt
