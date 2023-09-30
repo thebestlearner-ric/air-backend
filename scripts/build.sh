@@ -13,7 +13,11 @@
 cd air-backend-repo
 DOCKER_REPO=learningric/air_artifact
 TAG_NAME=$(git rev-parse --short=8 HEAD)
+ENV=backend
+IMAGE="$DOCKER_REPO:$ENV-$TAG_NAME"
 docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-docker build -t $DOCKER_REPO:backend-$TAG_NAME .
-docker push $DOCKER_REPO:backend-$TAG_NAME
+docker build -t $IMAGE .
+docker push $IMAGE
 docker images
+export $ENV
+export $IMAGE
