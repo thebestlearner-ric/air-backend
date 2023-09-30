@@ -13,7 +13,7 @@
 DOCKER_REPO=learningric/air_artifact
 TAG_NAME=$(git rev-parse --short=8 HEAD)
 ENV=backend
-IMAGE="$DOCKER_REPO:$ENV_$TAG_NAME"
+IMAGE="$DOCKER_REPO:$ENV"_"$TAG_NAME"
 docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 docker build -t $IMAGE .
 docker push $IMAGE
@@ -22,4 +22,3 @@ docker images
 echo "$ENV" >> artifact.txt
 echo "$IMAGE" >> artifact.txt
 cat artifact.txt
-echo "what is the $PWD"
