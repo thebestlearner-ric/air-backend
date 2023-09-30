@@ -22,4 +22,4 @@ docker images
 echo "$ENV" >> artifact.txt
 echo "$IMAGE" >> artifact.txt
 cat artifact.txt
-echo "what is the $pwd"
+echo "what is the $PWD"
