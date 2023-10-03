@@ -8,12 +8,26 @@ app = Flask(__name__)
 BASE_URL = "https://open-atms.airlab.aero/api/v1"
 API_KEY = "NfDGWCgOJdNQrBlDFmz0IYGarZGsbeCQuY3fTUvZRLxtcNwizO5NY2IRmD3db5vS"
 
-@app.route('/airport', methods=['GET'])
-def get_airport_info(icao_code):
+@app.route('/sids/airport/<icao_code>', methods=['GET'])
+def get_sids_airport_info(icao_code):
     """
     Query Open ATMS API to get information about a specific airport.
     """
-    url = f"{BASE_URL}/airac/sid/airport/{icao_code}"
+    url = f"{BASE_URL}/airac/sids/airport/{icao_code}"
+    headers = {'api-key': API_KEY}
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        return jsonify(response.json())
+    else:
+        return jsonify({"error": "Error retrieving airport information."}), 500
+
+@app.route('/stars/airport/<icao_code>', methods=['GET'])
+def get_stars_airport_info(icao_code):
+    """
+    Query Open ATMS API to get information about a specific airport.
+    """
+    url = f"{BASE_URL}/airac/stars/airport/{icao_code}"
     headers = {'api-key': API_KEY}
     response = requests.get(url, headers=headers)
 
